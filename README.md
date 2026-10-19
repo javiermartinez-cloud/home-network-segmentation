@@ -1,13 +1,12 @@
 # Home Network Segmentation
-Home network segmentation, firewall rules, and a CGNAT troubleshooting write-up. Applying to the Martinez Home Network. 
+Home network segmentation, firewall rules, and media server remote access troubleshooting write-up. Applying to the Martinez Home Network. 
 
 ## Goal
 
 Split my home network into separate segments so that guest and smart-home
 devices can reach the internet but not my NAS or personal computers. This
 repo documents the design, the firewall rules that enforce it, how I tested
-that the isolation works, and how I diagnosed remote access failing behind
-my ISP's carrier-grade NAT (CGNAT).
+that the isolation works, and how I diagnosed why remote access to my media server is failing.
 
 
 ## Network diagram

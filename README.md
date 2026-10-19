@@ -78,10 +78,13 @@ connecting by raw IP address but isn't what caused this failure.
 
 ## Decisions and trade-offs
 **No port forwarding for remote media access.** My ISP gives me a public
-IP, so forwarding port 32400 would work, but it would expose the media
-server to the entire internet. I use Tailscale instead, which reaches the
-server through an encrypted tunnel without opening any inbound ports.
-UPnP stays disabled so no device can open ports on its own.
+IP, so a port forward works, and I ran one for about a month. In that
+time the server attracted constant scanning from across the internet,
+far beyond my one remote viewer. Any flaw in the media server would have
+been exposed to all of it. I removed the forward and use Tailscale
+instead, which reaches the server through an encrypted tunnel without
+opening any inbound ports. UPnP stays disabled so no device can open
+ports on its own.
 
 ## What broke
 

@@ -26,6 +26,25 @@ all inbound connections, so I set up Tailscale as a workaround.
 the shared range 100.64.0.0/10, and the internet will see a different
 address than my router has.
 
+## Troubleshooting: was I really behind CGNAT?
+
+**Background:** About a year ago I made my media server reachable from
+outside the house. I first routed it through Cloudflare's proxy on my own
+domain, until I learned Cloudflare's terms don't allow streaming video
+through its free plan. I then switched to dynamic DNS and a port forward
+on my router. Within about a month, the traffic stats showed constant
+scanning from across the internet, so I removed the port forward and
+moved remote access to Tailscale.
+
+**Symptom:** In October 2026 I turned on the media server's built-in
+remote access, and it failed. I had forgotten removing the port forward
+and assumed my ISP used carrier-grade NAT (CGNAT), which blocks all
+inbound connections.
+
+**Hypothesis:** If I'm behind CGNAT, my router's WAN address will fall in
+the shared range 100.64.0.0/10, and the internet will see a different
+address than my router has.
+
 **Tests and evidence:**
 
 1. **Routing table.** The router's WAN interface sits in a public /23
@@ -46,12 +65,13 @@ address than my router has.
 **Conclusion:** I'm not behind CGNAT. My ISP gives the router a public
 IPv4 address.
 
-**Most likely cause:** UPnP is disabled and no port forward exists, so the
-router drops inbound connections. From the outside, that looks the same
-as CGNAT.
+**Cause:** UPnP is disabled, and the port forward I removed a year
+earlier is gone, so the router drops inbound connections. From the
+outside, that looks the same as CGNAT.
 
-**Resolution:** I chose not to open a port. See the port forwarding
-decision under Decisions and trade-offs.
+**Resolution:** Everything stays closed. Remote access runs through
+Tailscale. See the port forwarding decision under Decisions and
+trade-offs.
 
 **Note:** The public address is dynamic and can change, which matters for
 connecting by raw IP address but isn't what caused this failure.
@@ -62,6 +82,7 @@ IP, so forwarding port 32400 would work, but it would expose the media
 server to the entire internet. I use Tailscale instead, which reaches the
 server through an encrypted tunnel without opening any inbound ports.
 UPnP stays disabled so no device can open ports on its own.
+
 ## What broke
 
 ## What I'd improve

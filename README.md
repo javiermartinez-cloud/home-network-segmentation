@@ -8,7 +8,7 @@ Home network segmentation, firewall rules, and a CGNAT troubleshooting write-up.
 
 ## Firewall rules
 
-## Verfication
+## Verification
 
 ## Troubleshooting: remote access behind CGNAT
 

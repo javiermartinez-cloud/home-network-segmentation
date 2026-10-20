@@ -82,15 +82,6 @@ During the IoT test window, the capture recorded **no packets from 192.168.52.0/
 - **The pings never reached the NAS.** The capture shows they were dropped at the router, not ignored by the NAS.
 - **The capture also showed UPnP being refused.** Throughout the capture, the router answered "port unreachable" to port-mapping requests from the NAS on UDP 5351 (NAT-PMP/PCP) and 1900 (UPnP), so nothing on the network can open an inbound port automatically.
 
-## Troubleshooting: was I really behind CGNAT???
-**Symptom:** Remote access to my media server from outside the house
-failed. I assumed my ISP used carrier-grade NAT (CGNAT), which would block
-all inbound connections, so I set up Tailscale as a workaround.
-
-**Hypothesis:** If I'm behind CGNAT, my router's WAN address will fall in
-the shared range 100.64.0.0/10, and the internet will see a different
-address than my router has.
-
 ## Troubleshooting: was I really behind CGNAT?
 
 **Background:** About a year ago I made my media server reachable from
